@@ -28,6 +28,7 @@
             }
         },
         mounted() {
+            var socket = io('http://localhost:3000');
             this.update()
         },
         methods: {

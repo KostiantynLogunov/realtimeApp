@@ -21,9 +21,9 @@ class NewEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->result = $data;
     }
 
     /**
@@ -33,6 +33,7 @@ class NewEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return ['news-action'];
+//        return new PrivateChannel('channel-name');
     }
 }

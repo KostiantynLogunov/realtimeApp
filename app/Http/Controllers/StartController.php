@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewEvent;
 use Illuminate\Http\Request;
 
 class StartController extends Controller
@@ -79,7 +80,6 @@ class StartController extends Controller
 
     public function newEvent(Request $request)
     {
-
         $result =  [
             'labels' => ['March', 'April', 'May', 'June'],
             'datasets' => array(
@@ -98,10 +98,11 @@ class StartController extends Controller
 
             if ($request->has('realtime')) {
                 if ($request->realtime == true) {
-
+                    event(new NewEvent());
                 }
             }
-
         }
+
+        return $result;
     }
 }

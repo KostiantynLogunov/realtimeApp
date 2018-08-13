@@ -8,6 +8,9 @@
         <div class="col-sm-4">
             <h2 class="border-bottom text-center">ChartJS: Vue+Laravel</h2>
         </div>
+        <div class="col-sm-4">
+            <h2 class="border-bottom text-center">RealTime:</h2>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-4 ">
@@ -22,6 +25,14 @@
                 <li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu4">Line</a></li>
                 <li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu5">Pie</a></li>
                 <li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu6">Trigger</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-4 ">
+            <ul class="nav nav-tabs justify-content-center ">
+                <li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu7">ChartJS</a></li>
+                {{--<li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu5">Pie</a></li>--}}
+                {{--<li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu6">Trigger</a></li>--}}
             </ul>
         </div>
     </div>
@@ -57,7 +68,7 @@
             </div>
 
             <div id="menu3" class="tab-pane fade">
-                <div class="row m-2" data-hash="2">
+                <div class="row m-2" data-hash="3">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body" style="min-height: 720px;">
@@ -72,7 +83,7 @@
             </div>
 
             <div id="menu4" class="tab-pane fade">
-                <div class="row m-2" data-hash="2">
+                <div class="row m-2" data-hash="4">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body" style="min-height: 720px;">
@@ -85,7 +96,7 @@
             </div>
 
             <div id="menu5" class="tab-pane fade">
-                <div class="row m-2" data-hash="2">
+                <div class="row m-2" data-hash="5">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body" style="min-height: 720px;">
@@ -98,12 +109,25 @@
             </div>
 
             <div id="menu6" class="tab-pane fade">
-                <div class="row m-2" data-hash="2">
+                <div class="row m-2" data-hash="6">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body" style="min-height: 720px;">
                                 <h2 class="text-center">6# Trigger</h2>
                                 <chartrandom-component></chartrandom-component>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu7" class="tab-pane fade">
+                <div class="row m-2" data-hash="7">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body" style="min-height: 720px;">
+                                <h2 class="text-center">7# RealTime</h2>
+                                <socket-component></socket-component>
                             </div>
                         </div>
                     </div>
