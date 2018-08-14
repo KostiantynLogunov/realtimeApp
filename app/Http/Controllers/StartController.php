@@ -91,14 +91,13 @@ class StartController extends Controller
             )
         ];
 
-        if ($request->has('label'))
-        {
-            $result['labels'][] = $request->label;
-            $result['datasets'][0]['data'][] = (integer)$request->sale;
+        if ($request->has('label')) {
+            $result['labels'][] = $request->input('label');
+            $result['datasets'][0]['data'][] = (integer)$request->input('sale');
 
             if ($request->has('realtime')) {
-                if ($request->realtime == true) {
-                    event(new NewEvent());
+                if (filter_var($request->input('realtime'), FILTER_VALIDATE_BOOLEAN)) {
+                    event(new NewEvent($result));
                 }
             }
         }

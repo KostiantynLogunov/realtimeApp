@@ -3,7 +3,7 @@
         <div class="row">
            <div class="col-sm-12">
                 <line-chart :chart-data="data" :height="100" :options="{responsive: true, maintainAspectRation: true}"></line-chart>
-               <input type="checkbox" v-model="realtime">realtime
+               <input type="checkbox" name="realtime" v-model="realtime"> realtime
                <input type="text" v-model="label">
                <input type="text" v-model="sale">
                <button @click="sendData" class="btn btn-primary btn-xs text mt-1 mh-100">Update</button>
@@ -28,7 +28,12 @@
             }
         },
         mounted() {
-            var socket = io('http://localhost:3000');
+            var socket = io('http://192.168.10.10:3000');
+
+            socket.on("news-action:App\\Events\\NewEvent", function (data) {
+                this.data = data.result;
+            }.bind(this));
+
             this.update()
         },
         methods: {

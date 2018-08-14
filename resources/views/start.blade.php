@@ -31,8 +31,6 @@
         <div class="col-sm-4 ">
             <ul class="nav nav-tabs justify-content-center ">
                 <li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu7">ChartJS</a></li>
-                {{--<li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu5">Pie</a></li>--}}
-                {{--<li><a type="button" class="btn btn-secondary" data-toggle="tab" href="#menu6">Trigger</a></li>--}}
             </ul>
         </div>
     </div>
@@ -126,7 +124,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body" style="min-height: 720px;">
-                                <h2 class="text-center">7# RealTime</h2>
+                                <h2 class="text-center">7# RealTime Line</h2>
                                 <socket-component></socket-component>
                             </div>
                         </div>
