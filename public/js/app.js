@@ -23172,6 +23172,8 @@ Vue.component('chartline-component', __webpack_require__(230));
 Vue.component('chartpie-component', __webpack_require__(282));
 Vue.component('chartrandom-component', __webpack_require__(286));
 Vue.component('socket-component', __webpack_require__(289));
+Vue.component('socket-chat-component', __webpack_require__(303));
+Vue.component('socket-private-component', __webpack_require__(306));
 
 var app = new Vue({
   el: '#app'
@@ -70762,7 +70764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.is_refresh = true;
             axios.get('/start/get-json').then(function (response) {
-                console.log(response);
+                // console.log(response);
                 _this.urldata = response.data;
                 _this.is_refresh = false;
                 _this.id++;
@@ -84161,6 +84163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         socket.on("news-action:App\\Events\\NewEvent", function (data) {
             this.data = data.result;
+            // alert(data.result.labels[4]);
         }.bind(this));
 
         this.update();
@@ -84319,6 +84322,422 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(304)
+/* template */
+var __vue_template__ = __webpack_require__(305)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SocketChatComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-529fb7aa", Component.options)
+  } else {
+    hotAPI.reload("data-v-529fb7aa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 304 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            dataMessage: [],
+            message: ""
+        };
+    },
+    mounted: function mounted() {
+        var socket = io('http://192.168.10.10:3000');
+
+        socket.on("news-action:App\\Events\\NewMessage", function (data) {
+            this.dataMessage.push(data.message);
+            // alert(data.result.labels[4]);
+        }.bind(this));
+    },
+
+    methods: {
+        sendMessage: function sendMessage() {
+            var _this = this;
+
+            axios({
+                method: 'get',
+                url: '/start/send-message',
+                params: { message: this.message }
+            }).then(function (response) {
+                _this.message = "";
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "textarea",
+            { staticClass: "form-control", attrs: { rows: "6", readonly: "" } },
+            [_vm._v(_vm._s(_vm.dataMessage.join("\n")))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter a new message..." },
+            domProps: { value: _vm.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-append" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-secondary",
+                attrs: { type: "button" },
+                on: { click: _vm.sendMessage }
+              },
+              [_vm._v("Send")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-529fb7aa", module.exports)
+  }
+}
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(307)
+/* template */
+var __vue_template__ = __webpack_require__(308)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SocketPrivateComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-be4d83f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-be4d83f8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 307 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            dataMessage: [],
+            message: "",
+            usersSelect: []
+        };
+    },
+    props: ['users', 'user'],
+    mounted: function mounted() {
+        var socket = io('http://192.168.10.10:3000');
+
+        socket.on("news-action." + this.user.id + ":App\\Events\\PrivateMessage", function (data) {
+            this.dataMessage.push(data.message.user + ':' + data.message.message);
+            // alert(data.result.labels[4]);
+        }.bind(this));
+
+        socket.on("news-action.:App\\Events\\PrivateMessage", function (data) {
+            this.dataMessage.push(data.message.user + ':' + data.message.message);
+            // alert(data.result.labels[4]);
+        }.bind(this));
+    },
+
+    methods: {
+        sendMessage: function sendMessage() {
+            var _this = this;
+
+            if (!this.usersSelect.length) {
+                this.usersSelect.push('news-action.');
+            }
+
+            axios({
+                method: 'get',
+                url: '/start/send-private-message',
+                params: { channels: this.usersSelect, message: this.message, user: this.user.email }
+            }).then(function (response) {
+                _this.dataMessage.push(_this.user.email + ':' + _this.message);
+                _this.message = "";
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "row form-group" }, [
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.usersSelect,
+                    expression: "usersSelect"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "", multiple: "" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.usersSelect = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.users, function(user) {
+                return _c(
+                  "option",
+                  { domProps: { value: "news-action." + user.id } },
+                  [_vm._v(_vm._s(user.email))]
+                )
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-12" }, [
+            _c(
+              "textarea",
+              {
+                staticClass: "form-control",
+                attrs: { rows: "6", readonly: "" }
+              },
+              [_vm._v(_vm._s(_vm.dataMessage.join("\n")))]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter a new message..." },
+            domProps: { value: _vm.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-append" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-secondary",
+                attrs: { type: "button" },
+                on: { click: _vm.sendMessage }
+              },
+              [_vm._v("Send")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-be4d83f8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

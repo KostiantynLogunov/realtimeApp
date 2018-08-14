@@ -32,6 +32,7 @@
 
             socket.on("news-action:App\\Events\\NewEvent", function (data) {
                 this.data = data.result;
+                // alert(data.result.labels[4]);
             }.bind(this));
 
             this.update()
